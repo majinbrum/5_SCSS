@@ -1,0 +1,23 @@
+div {
+  border: 1px solid red;
+  padding: 20px;
+  text-align: center;
+
+  h1 {
+    color: green;
+    text-decoration: 1px underline blue;
+  }
+
+  section {
+    display: flex;
+    article {
+      border: 1px solid green;
+      &:nth-child(even) {
+        color: red;
+      }
+      &:nth-child(odd) {
+        color: blue;
+      }
+    }
+  }
+}
