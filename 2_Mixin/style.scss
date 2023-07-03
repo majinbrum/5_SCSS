@@ -1,0 +1,42 @@
+$u: 1rem;
+@mixin article($color, $borderColor: green, $fontSize: 1rem) {
+  color: $color;
+  border-color: $borderColor;
+  font-size: $fontSize;
+}
+
+* {
+  padding: $u;
+}
+
+div {
+  border: 1px solid red;
+  text-align: center;
+}
+
+h1 {
+  @include article(green, $borderColor: blue, $fontSize: 24px);
+  text-decoration: 1px underline;
+}
+
+section {
+  display: flex;
+  text-align: center;
+  article {
+    border: 1px solid;
+    &:nth-child(even) {
+      @include article(red);
+    }
+    &:nth-child(odd) {
+      @include article(blue);
+    }
+  }
+}
+
+section:last-child {
+  article {
+    border: 1px solid;
+    width: 100%;
+    @include article(green, $borderColor: blue, $fontSize: 24px);
+  }
+}
