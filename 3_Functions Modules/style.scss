@@ -1,0 +1,38 @@
+@use "./_variables.scss" as m;
+@use "./function" as f;
+
+* {
+  padding: f.rem(16);
+}
+
+div {
+  border: f.rem(1) solid red;
+  text-align: center;
+}
+
+h1 {
+  @include m.article(green, $borderColor: blue, $fontSize: f.rem(24));
+  text-decoration: f.rem(1) underline;
+}
+
+section {
+  display: flex;
+  text-align: center;
+  article {
+    border: f.rem(1) solid;
+    &:nth-child(even) {
+      @include m.article(red);
+    }
+    &:nth-child(odd) {
+      @include m.article(blue);
+    }
+  }
+}
+
+section:last-child {
+  article {
+    border: f.rem(1) solid;
+    width: 100%;
+    @include m.article(green, $borderColor: blue, $fontSize: f.rem(24));
+  }
+}
