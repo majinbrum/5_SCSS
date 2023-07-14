@@ -1,0 +1,5 @@
+@mixin article($color, $borderColor: green, $fontSize: 1rem) {
+  color: $color;
+  border-color: $borderColor;
+  font-size: $fontSize;
+}
