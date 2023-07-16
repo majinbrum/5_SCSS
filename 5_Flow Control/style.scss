@@ -1,0 +1,76 @@
+@use "sass:color";
+@use "./_variables.scss" as m;
+@use "./function" as f;
+
+* {
+  padding: f.rem(16);
+  box-sizing: border-box;
+}
+
+div {
+  border: f.rem(1) solid red;
+}
+
+header {
+  text-align: center;
+  & > h1 {
+    @include m.article(green, $fontSize: f.rem(24));
+    text-decoration: f.rem(3) underline blue;
+  }
+  & > h2 {
+    border: f.rem(1) solid;
+    @include m.article(green, $borderColor: red, $fontSize: f.rem(24));
+    padding: f.rem(10);
+    display: inline;
+  }
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  article {
+    border: f.rem(1) solid;
+    &:nth-child(even) {
+      @include m.article(red);
+    }
+    &:nth-child(odd) {
+      @include m.article(blue);
+    }
+  }
+  & div {
+    width: f.rem(45);
+    height: f.rem(45);
+  }
+}
+
+section:last-child {
+  article {
+    border: f.rem(1) solid;
+    width: 100%;
+    @include m.article(green, $borderColor: blue, $fontSize: f.rem(24));
+  }
+}
+
+@for $index from 1 through 20 {
+  section div:nth-child(#{$index}) {
+    background-color: color.adjust(white, $lightness: $index * -5%);
+    color: color.adjust(black, $lightness: $index * 5%);
+    @if $index == 10 {
+      color: red;
+      background-color: blue;
+    }
+  }
+}
+
+$divs: "div.fz-1", "div.fz-2", "div.fz-3";
+
+@each $div in $divs {
+  $index: index($divs, $div);
+  #{$div} {
+    font-size: $index + rem;
+    text-align: start;
+    padding: 0;
+    overflow: hidden;
+  }
+}
